@@ -1,7 +1,8 @@
 const education = [
-    { key: "t", text: "Trainee", value: "trainee" },
-    { key: "j", text: "Junior", value: "junior" },
-    { key: "s", text: "Senior", value: "senior" }
+    { key: "t", text: "None", value: "none" },
+    { key: "j", text: "BSc", value: "BSc" },
+    { key: "s", text: "MSc", value: "MSc" },
+    { key: "s", text: "PhD", value: "PhD" }
 ];
 
 const experience = [
@@ -11,4 +12,10 @@ const experience = [
     { key: "h", text: "here?", value: "here?" }
 ];
 
-export { education, experience }
+const category = [
+    { key: "w", text: "Junior", value: "Junior" },
+    { key: "s", text: "Senior", value: "Senior" },
+    { key: "g", text: "C-Level", value: "C-Level" },
+];
+
+export { education, experience, category }

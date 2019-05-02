@@ -9,7 +9,7 @@ import {
   Grid
 } from "semantic-ui-react";
 import { Input, Dropdown } from "formsy-semantic-ui-react";
-import { education, experience } from "./selections";
+import { education, experience, category } from "./selections";
 import { useJobs } from "../contexts";
 
 const ApplyModal = () => {
@@ -104,6 +104,23 @@ const ApplyModal = () => {
     />
   );
 
+  const selectCategory = (
+    <Dropdown
+      name="jobKat"
+      placeholder="Category"
+      label="Job Category"
+      selection
+      validations={{
+        customValidation: (values, value) => !(!value || value.length < 1)
+      }}
+      validationErrors={{
+        customValidation: "You need to select a job category"
+      }}
+      errorLabel={errorLabel}
+      options={category}
+    />
+  );
+
   const inputAge = (
     <Input
       name="age"
@@ -162,6 +179,8 @@ const ApplyModal = () => {
                 {selectEducation}
                 <Divider hidden />
                 {selectExperience}
+                <Divider hidden />
+                {selectCategory}
 
               </Grid.Column>
             </Grid>
