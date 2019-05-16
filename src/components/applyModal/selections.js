@@ -1,21 +1,31 @@
-const education = [
-    { key: "t", text: "None", value: "none" },
-    { key: "j", text: "BSc", value: "BSc" },
-    { key: "s", text: "MSc", value: "MSc" },
-    { key: "s", text: "PhD", value: "PhD" }
+const educationSelection = [
+  { key: "ed1", text: "None", value: "none" },
+  { key: "ed2", text: "BSc", value: "BSc" },
+  { key: "ed3", text: "MSc", value: "MSc" },
+  { key: "ed4", text: "PhD", value: "PhD" }
 ];
 
-const experience = [
-    { key: "w", text: "What", value: "what" },
-    { key: "s", text: "should", value: "should" },
-    { key: "g", text: "go", value: "go" },
-    { key: "h", text: "here?", value: "here?" }
+const ageSelection = [
+  { key: "ag1", text: "18-29", value: "18-29" },
+  { key: "ag2", text: "30-49", value: "30-49" },
+  { key: "ag3", text: ">50", value: "50" }
 ];
 
-const category = [
-    { key: "w", text: "Junior", value: "Junior" },
-    { key: "s", text: "Senior", value: "Senior" },
-    { key: "g", text: "C-Level", value: "C-Level" },
+const experienceSelection = [
+  { key: "exp1", text: "0-3", value: "0-3" },
+  { key: "exp2", text: "4-9", value: "4-9" },
+  { key: "exp3", text: ">10", value: "10" }
 ];
 
-export { education, experience, category }
+const categorySelection = [
+  { key: "cat1", text: "junior", value: "junior" },
+  { key: "cat2", text: "not defined", value: "not defined" },
+  { key: "cat3", text: "senior", value: "senior" }
+];
+
+export {
+  educationSelection,
+  ageSelection,
+  experienceSelection,
+  categorySelection
+};

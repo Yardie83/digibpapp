@@ -9,7 +9,12 @@ import {
   Grid
 } from "semantic-ui-react";
 import { Input, Dropdown } from "formsy-semantic-ui-react";
-import { education, experience, category } from "./selections";
+import {
+  educationSelection,
+  ageSelection,
+  experienceSelection,
+  categorySelection
+} from "./selections";
 import { useJobs } from "../contexts";
 
 const ApplyModal = () => {
@@ -21,9 +26,39 @@ const ApplyModal = () => {
 
   const [formData, setFormData] = useState({ formData: null });
 
-  const onValidSubmit = formData => alert(JSON.stringify(formData));
+  const onValidSubmit = formData => {
+    formData.cv = "false";
+    formData.reference = "false";
+    var url = new URL(
+        "https://hook.integromat.com/5prntpou3jnoo8p6h1e1gsh2sia3l6gr"
+      ),
+      params = {
+        jobId: formData.jobId,
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        experience: formData.experience,
+        education: formData.education,
+        jobKat: formData.jobKat,
+        age: formData.age,
+        cv: formData.cv,
+        references: formData.reference
+      };
+    Object.keys(params).forEach(key =>
+      url.searchParams.append(key, params[key])
+    );
+    fetch(url)
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(data) {
+        alert("Thank you for your application\n", JSON.stringify(data));
+      });
+  };
 
   const errorLabel = <Label color="red" pointing="left" />;
+
+  const inputJobId = <Input name="jobId" type="hidden" value="1" />;
 
   const inputFirstName = (
     <Input
@@ -74,16 +109,17 @@ const ApplyModal = () => {
   const selectExperience = (
     <Dropdown
       name="experience"
-      placeholder="Experience"
+      placeholder="Years of Experience"
       selection
       validations={{
         customValidation: (values, value) => !(!value || value.length < 1)
       }}
       validationErrors={{
-        customValidation: "You need to select your experience level"
+        customValidation:
+          "You need to select the numbers of years of experience "
       }}
       errorLabel={errorLabel}
-      options={experience}
+      options={experienceSelection}
     />
   );
 
@@ -100,7 +136,7 @@ const ApplyModal = () => {
         customValidation: "You need to select your educational level"
       }}
       errorLabel={errorLabel}
-      options={education}
+      options={educationSelection}
     />
   );
 
@@ -117,28 +153,49 @@ const ApplyModal = () => {
         customValidation: "You need to select a job category"
       }}
       errorLabel={errorLabel}
-      options={category}
+      options={categorySelection}
     />
   );
 
-  const inputAge = (
-    <Input
+  const selectAge = (
+    <Dropdown
       name="age"
-      placeholder="Your age"
+      placeholder="Age"
       label="Age"
-      required
-      validations="isNumeric"
+      selection
+      validations={{
+        customValidation: (values, value) => !(!value || value.length < 1)
+      }}
       validationErrors={{
-        isNumeric: "Please enter a valid age",
-        isDefaultRequiredValue: "Age is Required"
+        customValidation: "You need to select your age range"
       }}
       errorLabel={errorLabel}
+      options={ageSelection}
+    />
+  );
+
+  const inputCV = (
+    <Input
+      name="cv"
+      placeholder="Choose file"
+      label="Upload your CV"
+      type="file"
+    />
+  );
+
+  const inputReference = (
+    <Input
+      name="reference"
+      placeholder="Choose file"
+      label="Upload your Reference Letter"
+      type="file"
     />
   );
 
   return (
     <Modal
-      style={{ top: "0px" }}
+      className="scrolling"
+      style={{ height: "100px", top: "10px" }}
       trigger={
         <Button basic primary>
           Apply
@@ -158,9 +215,10 @@ const ApplyModal = () => {
             onValidSubmit={onValidSubmit}
             // ref={ref => (form = ref)}
           >
+            {inputJobId}
             <Grid centered columns={1}>
               <Grid.Column width={12}>
-              <Label as="a" color="blue" ribbon>
+                <Label as="a" color="blue" ribbon>
                   Personal information
                 </Label>
                 <Divider hidden />
@@ -168,8 +226,8 @@ const ApplyModal = () => {
                 <Divider hidden />
                 {inputLastName}
                 <Divider hidden />
-                {inputAge}
-                <Divider hidden/>
+                {selectAge}
+                <Divider hidden />
                 {inputEmail}
                 <Divider />
                 <Label as="a" color="red" ribbon>
@@ -181,11 +239,17 @@ const ApplyModal = () => {
                 {selectExperience}
                 <Divider hidden />
                 {selectCategory}
-
+                <Divider />
+                <Label as="a" color="green" ribbon>
+                  CV & Reference Letter
+                </Label>
+                <Divider hidden />
+                {inputCV}
+                <Divider hidden />
+                {inputReference}
               </Grid.Column>
             </Grid>
             <Divider />
-
             <Button content="Submit" primary />
           </Form>
         </Segment>

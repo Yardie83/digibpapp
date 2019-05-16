@@ -5,7 +5,7 @@ const Main = props => {
   const contextRef = useRef();
 
   return (
-    <Segment style={{ paddingTop: "70px", paddingBottom: "70px", margin: "0px" }}>
+    <Segment style={{ paddingTop: "70px", paddingBottom: "70px", paddingRight: "100px", margin: "0px" }}>
       <Grid centered columns={2}>
         <Grid.Column>
           <Ref innerRef={contextRef}>
