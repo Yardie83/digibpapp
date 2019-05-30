@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import mockData from './mockData'
+import mockData from "./mockData";
 
 const JobContext = React.createContext();
 
@@ -10,7 +10,7 @@ const JobProvider = props => {
     // const url = "https://hook.integromat.com/lj8a00646l7wciokfpiar65tqak9m7h8";
     // fetch(url)
     //   .then(results => results.json())
-    //   .then(data => setJobs(data));
+    //   .then(data =>{console.log(data); setJobs(data)});
     setJobs(mockData)
   }
 

@@ -4,8 +4,8 @@ import JobDetail from "../jobDetail";
 
 const JobRail = ({ contextRef }) => {
   return (
-    <Rail dividing position="right" size="large">
-      <Sticky context={contextRef} offset={100} pushing>
+    <Rail dividing position="right" >
+      <Sticky context={contextRef} offset={100}>
         <JobDetail />
       </Sticky>
     </Rail>

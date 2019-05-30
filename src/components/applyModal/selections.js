@@ -17,15 +17,4 @@ const experienceSelection = [
   { key: "exp3", text: ">10", value: "10" }
 ];
 
-const categorySelection = [
-  { key: "cat1", text: "junior", value: "junior" },
-  { key: "cat2", text: "not defined", value: "not defined" },
-  { key: "cat3", text: "senior", value: "senior" }
-];
-
-export {
-  educationSelection,
-  ageSelection,
-  experienceSelection,
-  categorySelection
-};
+export { educationSelection, ageSelection, experienceSelection };

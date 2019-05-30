@@ -13,7 +13,7 @@ const JobDetail = () => {
   return (
     <>
       {job && (
-        <Card fluid style={{ width: "350px" }}>
+        <Card style={{maxWidth: "100%"}}>
           <Card.Content>
             <Image
               bordered
@@ -31,8 +31,8 @@ const JobDetail = () => {
             </Card.Description>
           </Card.Content>
           <Card.Content>
-            <ApplyModal/>
           </Card.Content>
+          <ApplyModal/>
         </Card>
       )}
     </>

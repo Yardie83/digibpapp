@@ -5,15 +5,13 @@ const Main = props => {
   const contextRef = useRef();
 
   return (
-    <Segment style={{ paddingTop: "70px", paddingBottom: "70px", paddingRight: "100px", margin: "0px" }}>
-      <Grid centered columns={2}>
+      <Grid centered columns={2} style={{ paddingTop: "70px", paddingBottom: "70px", paddingRight: "100px", margin: "0px" }}>
         <Grid.Column>
           <Ref innerRef={contextRef}>
-            <Segment>{props.children}</Segment>
+            <Segment>{props.children}</Segment> 
           </Ref>
         </Grid.Column>
       </Grid>
-    </Segment>
   );
 };
 
