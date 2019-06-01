@@ -4,16 +4,24 @@ import mockData from "./mockData";
 const JobContext = React.createContext();
 
 const JobProvider = props => {
-  const [jobs, setJobs] = useState([]);
+  const [jobs, setJobs] = useState([{}]);
 
   async function fetchJobs() {
-    // const url = "https://hook.integromat.com/lj8a00646l7wciokfpiar65tqak9m7h8";
-    // fetch(url)
-    //   .then(results => results.json())
-    //   .then(data =>{console.log(data); setJobs(data)});
-    setJobs(mockData)
+    const url = "https://hook.integromat.com/lj8a00646l7wciokfpiar65tqak9m7h8";
+    fetch(url)
+      .then(results => results.json())
+      .then(data => {
+        const jobs = data.map(jobsList =>{
+            const job = jobsList.jobs;
+            return job;
+        })
+        jobs.reverse();
+        console.log(jobs);
+        setJobs(jobs);
+      });
+    // setJobs(mockData)
   }
-
+  
   useEffect(() => {
     fetchJobs();
   }, []);
@@ -27,11 +35,10 @@ function useJobs() {
   if (!context) {
     throw new Error("useJobs must be used within a JobProvider");
   }
-  const { jobs, setJobs } = context;
+  const { jobs, setJobs} = context;
   return {
     jobs,
     setJobs
   };
 }
-
-export { JobProvider, useJobs };
+export { JobProvider, useJobs,  };

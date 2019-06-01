@@ -1,1 +1,1 @@
-export {JobProvider, useJobs} from './jobContext'
+export { JobProvider, useJobs } from "./jobContext";

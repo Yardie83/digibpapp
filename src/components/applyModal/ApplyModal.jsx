@@ -1,14 +1,10 @@
 import React, { useState } from "react";
 import {
   Modal,
-  Segment,
   Button,
   Label,
   Divider,
   Grid,
-  Image,
-  Header,
-  Icon
 } from "semantic-ui-react";
 import { Form, Input, Dropdown } from "formsy-semantic-ui-react";
 import {
@@ -19,13 +15,12 @@ import {
 import { useJobs } from "../contexts";
 
 const ApplyModal = () => {
+  const [open, setOpen] = useState(false);
   const { jobs } = useJobs();
 
   const job = jobs.filter(jobs => {
     return jobs.isSelected === true;
   })[0];
-
-  const [formData, setFormData] = useState({ formData: null });
 
   const onValidSubmit = formData => {
     formData.cv = "false";
@@ -44,8 +39,6 @@ const ApplyModal = () => {
         age: formData.age,
         cv: formData.cv,
         references: formData.reference
-
-        
       };
     Object.keys(params).forEach(key =>
       url.searchParams.append(key, params[key])
@@ -54,12 +47,11 @@ const ApplyModal = () => {
       .then(function(response) {
         return response;
       })
-      .then(function(data) {
-        alert("Thank you for your application\n", data);
+      .then(function() {
+        setOpen(false);
+        alert("Thank you for your application. We will process your application shortly\n");
       });
   };
-
-  const errorLabel = <Label color="red" pointing="left" />;
 
   const inputJobId = <Input name="jobId" type="hidden" value="1" />;
 
@@ -155,9 +147,13 @@ const ApplyModal = () => {
 
   return (
     <Modal
+      open={open}
       className="scrolling"
       trigger={
-        <Button style={{ background: "#2185d0", color: "#ffffff" }}>
+        <Button
+          onClick={() => setOpen(true)}
+          style={{ background: "#2185d0", color: "#ffffff" }}
+        >
           Apply
         </Button>
       }
