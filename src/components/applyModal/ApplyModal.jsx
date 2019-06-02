@@ -23,6 +23,7 @@ const ApplyModal = () => {
   })[0];
 
   const onValidSubmit = formData => {
+    console.log(job.jobId)
     formData.cv = "false";
     formData.reference = "false";
     var url = new URL(
