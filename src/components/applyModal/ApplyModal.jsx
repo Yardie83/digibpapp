@@ -26,6 +26,7 @@ const ApplyModal = () => {
     console.log(job.jobId)
     formData.cv = "false";
     formData.reference = "false";
+    formData.zipCode = "7545";
     var url = new URL(
         "https://hook.integromat.com/5prntpou3jnoo8p6h1e1gsh2sia3l6gr"
       ),
@@ -34,6 +35,7 @@ const ApplyModal = () => {
         firstName: formData.firstName,
         lastName: formData.lastName,
         email: formData.email,
+        zipCode: formData.zipCode,
         experience: formData.experience,
         education: formData.education,
         jobKat: job.category,
