@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import mockData from "./mockData";
+// import mockData from "./mockData";
 
 const JobContext = React.createContext();
 
@@ -16,7 +16,6 @@ const JobProvider = props => {
             return job;
         })
         jobs.reverse();
-        console.log(jobs);
         setJobs(jobs);
       });
     // setJobs(mockData)

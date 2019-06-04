@@ -5,8 +5,6 @@ const JobListItem = props => {
   const listItemStyle = () => {
     return ({
       backgroundColor: props.item.isSelected
-        // ? "1px solid #0044cc"
-        // : "1px solid lightGrey",
         ? "papayawhip" : "white",
         padding: "10px",
 
@@ -16,7 +14,7 @@ const JobListItem = props => {
   return (
     <>
       <List.Item onClick={props.onClick} style={listItemStyle()}>
-        <Image src={props.item.logoUrl} avatar />
+        <Image size={"tiny"} src={props.item.logoUrl} avatar />
         <List.Content>
           <List.Header as="a">{props.item.title}</List.Header>
           <List.Description>{props.item.createdAt}</List.Description>

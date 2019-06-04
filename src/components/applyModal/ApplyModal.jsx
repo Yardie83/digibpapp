@@ -152,6 +152,8 @@ const ApplyModal = () => {
   return (
     <Modal
       open={open}
+      closeOnDimmerClick={true}
+      onClose={()=> setOpen(false)}
       className="scrolling"
       trigger={
         <Button
